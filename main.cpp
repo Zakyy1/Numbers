@@ -29,6 +29,7 @@ int main() {
     cout << "\nMax:" << maxw;
     cout << "\n";
     isEven(T);
+    cout << "\n";
     incrs(T);
 }
 float favg() {
@@ -47,6 +48,7 @@ void minmax(int &minv, int &maxv) {
     }   
 }
 
+//Zadanie domowe
 void isEven(int T[]){
     int Even = 0;
     int notEven = 0;
@@ -57,3 +59,27 @@ void isEven(int T[]){
     cout << "Parzyste: " << Even << "\nNieparzyste: " << notEven;
 }
 
+
+//Zadanie z kolejnej lekcji
+void incrs(int T[]){
+    int max_lenght = 1;
+    int start;
+    int lenght = 1;
+    int p = 0;
+
+    start = p;
+    for (int i=1;i<N;i++){
+        if(T[i]>T[i-1]){
+            ++lenght;
+            if(lenght>max_lenght){
+                max_lenght = lenght;
+                start = p;
+            }
+        }
+        else{
+            p = i;
+            lenght = 1;
+        }
+    }
+    cout << "Długosc najdluzszego ciagu rosnacego to: " << max_lenght << ", zaczyna sie w linii " << start+1;
+}
