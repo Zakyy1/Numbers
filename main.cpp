@@ -10,6 +10,7 @@ int T[N];
 float favg();
 void minmax(int &minv, int &maxv);
 void isEven(int T[]);
+void incrs(int T[]);
 
 int main() {    
     ifstream in ("dane.txt");
@@ -28,6 +29,7 @@ int main() {
     cout << "\nMax:" << maxw;
     cout << "\n";
     isEven(T);
+    incrs(T);
 }
 float favg() {
     float sum = 0;
@@ -48,10 +50,10 @@ void minmax(int &minv, int &maxv) {
 void isEven(int T[]){
     int Even = 0;
     int notEven = 0;
-    pair<int, int> pair1;
     for (int i=0 ; i<N ; i++ ){
         if((T[i]%2) == 0) Even++;
         else notEven++;
     }
     cout << "Parzyste: " << Even << "\nNieparzyste: " << notEven;
 }
+
