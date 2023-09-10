@@ -11,6 +11,7 @@ float favg();
 void minmax(int &minv, int &maxv);
 void isEven(int T[]);
 void incrs(int T[]);
+void decrs(int T[]);
 
 int main() {    
     ifstream in ("dane.txt");
@@ -31,6 +32,8 @@ int main() {
     isEven(T);
     cout << "\n";
     incrs(T);
+    cout << "\n";
+    decrs(T);
 }
 float favg() {
     float sum = 0;
@@ -82,4 +85,27 @@ void incrs(int T[]){
         }
     }
     cout << "Długosc najdluzszego ciagu rosnacego to: " << max_lenght << ", zaczyna sie w linii " << start+1;
+}
+
+void decrs(int T[]){
+    int max_lenght = 1;
+    int start;
+    int lenght = 1;
+    int p = 0;
+
+    start = p;
+    for (int i=1;i<N;i++){
+        if(T[i]<T[i-1]){
+            ++lenght;
+            if(lenght>max_lenght){
+                max_lenght = lenght;
+                start = p;
+            }
+        }
+        else{
+            p = i;
+            lenght = 1;
+        }
+    }
+    cout << "Długosc najdluzszego ciagu malejacego to: " << max_lenght << ", zaczyna sie w linii " << start+1;
 }
