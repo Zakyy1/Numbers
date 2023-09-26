@@ -2,6 +2,7 @@
 #include<fstream>
 #include<time.h>
 #include <utility>
+#include <vector>
 using namespace std;
 
 const int N=1e3;
@@ -12,6 +13,7 @@ void minmax(int &minv, int &maxv);
 void isEven(int T[]);
 void incrs(int T[]);
 void decrs(int T[]);
+void itsOverTwelveHundred(int T[]);
 
 int main() {    
     ifstream in ("dane.txt");
@@ -34,6 +36,8 @@ int main() {
     incrs(T);
     cout << "\n";
     decrs(T);
+    cout << "\n";
+    itsOverTwelveHundred(T);
 }
 float favg() {
     float sum = 0;
@@ -63,30 +67,53 @@ void isEven(int T[]){
 }
 
 
-//Zadanie z kolejnej lekcji
-void incrs(int T[]){
+//Zadanie domowe 2
+ void incrs(int T[]){
+
     int max_lenght = 1;
     int start;
     int lenght = 1;
     int p = 0;
+    vector<int> longest_temp;
+    vector<int> longest;
 
     start = p;
     for (int i=1;i<N;i++){
         if(T[i]>T[i-1]){
             ++lenght;
+            longest_temp.push_back(T[i]);
             if(lenght>max_lenght){
                 max_lenght = lenght;
                 start = p;
+                longest = longest_temp;
             }
         }
         else{
             p = i;
             lenght = 1;
+            longest_temp.clear();
         }
     }
-    cout << "Długosc najdluzszego ciagu rosnacego to: " << max_lenght << ", zaczyna sie w linii " << start+1;
+    //Do poprawy
+    cout << "Długosc najdluzszego ciagu rosnacego to: " << max_lenght << ", zaczyna sie w linii " << start+1; 
+    cout << "\tJest to ciag: ";
+    //Wypisuje pierwszy element ciągu
+    cout << T[start] << " ";
+    //Reszta ciągu
+    for(int i=0;i<longest.size();i++){
+        cout << longest.at(i) << " ";
+    }
 }
 
+void itsOverTwelveHundred(int T[]){
+    int bigger= 0;
+    for (int i=0;i<N;i++){
+        if(T[i]>200) bigger++;
+    }
+    cout << "Ilosc wiekszych od 200: " << bigger;
+}
+
+//Do zaktualizowania 
 void decrs(int T[]){
     int max_lenght = 1;
     int start;
